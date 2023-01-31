@@ -29,9 +29,13 @@ The plugin looks up the sub-attributes in your product, then for each value it l
 When using a filter with the main attribute on the store page, all the products that have that main attribute are returned, which are the same products that contain the associated sub-attributes.
 
 ## how to use
-1. create the attribute(father) and sub-attribute( child ) with the diferents values.
+1. Create the attribute(father) and sub-attribute( child ) with the diferents values.
    Ej: attribute ( color-base ) - sub-attribute ( color )
    <img src="https://github.com/vittfiles/vitt-attribute-hierarchy/blob/main/example-img/example01.webp" alt="create attribute and sub-attribute" style="max-width:700px;"/>
+
+
+2. Go to "Vitt Attribute" in menu to create a new hierarchy(connection):
+  <img src="https://github.com/vittfiles/vitt-attribute-hierarchy/blob/main/example-img/example02.webp" alt="create attribute and sub-attribute" style="max-width:700px;"/>
 ## Contact
 
 - GitHub [vittfiles](https://github.com/vittfiles)
