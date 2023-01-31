@@ -6,6 +6,10 @@
  * Description:       You can define attributes and subattributes to simulate their behavior like categories and subcategories
  * Version:           1.0.1
  * Author:            Matias Martinez
+ * Requires at least: 6.0
+ * Tested up to: 6.1.1
+ * WC requires at least: 5.0
+ * WC tested up to: 7.3
  */
 
 function activate_vittfiles_attribute_hierarchy(){
