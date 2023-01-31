@@ -23,7 +23,7 @@
 
 ## Overview
 
-![screenshot](https://github.com/vittfiles/my-team-page-master/tree/main/img/pagina2.png)
+![screenshot](https://github.com/vittfiles/vitt-attribute-hierarchy/blob/main/example-img/example01.webp)
 
 This plugin works simulating a hierarchy for attributes and subattributes.
 
