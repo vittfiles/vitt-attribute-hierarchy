@@ -15,7 +15,7 @@
 ## Table of Contents
 
 - [Overview](#overview)
-- [how to use](#how-use)
+- [how to use](#how-to-use)
 <!-- - [Features](#features) -->
 - [Contact](#contact)
 
