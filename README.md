@@ -35,7 +35,16 @@ When using a filter with the main attribute on the store page, all the products 
 
 
 2. Go to "Vitt Attribute" in menu to create a new hierarchy(connection):
-  <img src="https://github.com/vittfiles/vitt-attribute-hierarchy/blob/main/example-img/example02.webp" alt="create attribute and sub-attribute" style="max-width:700px;"/>
+    <img src="https://github.com/vittfiles/vitt-attribute-hierarchy/blob/main/example-img/example02.webp" alt="create attribute and sub-attribute" style="max-width:700px;"/>
+
+
+3. Add the attribute slug and sub-attribute slug and press "Add connection".
+    <img src="https://github.com/vittfiles/vitt-attribute-hierarchy/blob/main/example-img/example03.webp" alt="create attribute and sub-attribute" style="max-width:700px;"/>
+
+4. Now you have a new hierarchy created and can press "Configure terms" to define which attribute value is "parent" of the      sub-attribute value:
+    <img src="https://github.com/vittfiles/vitt-attribute-hierarchy/blob/main/example-img/example04.webp" alt="create attribute and sub-attribute" style="max-width:700px;"/>
+
+5. 
 ## Contact
 
 - GitHub [vittfiles](https://github.com/vittfiles)
