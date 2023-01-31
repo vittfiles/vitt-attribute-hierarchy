@@ -60,6 +60,17 @@ function vittfiles_save_attributes_to_base_attribute($product){
 			$attributes[] = $attribute;
 			$product->set_attributes($attributes);
 			/* $product->save(); */
+		}else{
+			$attribute = new WC_Product_Attribute();
+			$attribute->set_id(wc_attribute_taxonomy_id_by_name( 'pa_'.$info[0] ));
+			$attribute->set_name( 'pa_'.$info[0] );
+			$attribute->set_options(array());
+			$attribute->set_position( 0 );
+			$attribute->set_visible( 0 );
+			$attribute->set_variation( 0 );
+			$attributes[] = $attribute;
+			$product->set_attributes($attributes);
+			/* $product->save(); */
 		}
 	}
 }

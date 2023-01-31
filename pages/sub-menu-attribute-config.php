@@ -4,7 +4,7 @@ function vittfiles_attributes_config_sub_page(){
 	$slug = trim(sanitize_text_field($_GET['slug']));
 	$sub_slug = trim(sanitize_text_field($_GET['sub-slug']));
     print('<div style="position: relative;">
-	<h1>Sub página</h1>');
+	<h1>Configure terms</h1>');
     
 	$sub_terms = get_terms(array(
 		'taxonomy' => "pa_".$sub_slug,
@@ -54,16 +54,16 @@ function vittfiles_attributes_config_sub_page(){
         <table class="wp-list-table widefat fixed striped table-view-list tags ui-sortable">
             <thead>
                 <tr>
-                    <th scope="col" id="posts" class="manage-column column-posts num sortable desc"><span>hierarchy</span><span
+                    <th scope="col" id="posts" class="manage-column column-posts num sortable desc"><span>Hierarchy</span><span
                                 class="sorting-indicator"></span></th>
                     <th scope="col" id="wvs-meta-preview" class="manage-column column-wvs-meta-preview"></th>
-                    <th scope="col" id="name" class="manage-column column-name column-primary sortable desc"><span>Nombre</span><span
+                    <th scope="col" id="name" class="manage-column column-name column-primary sortable desc"><span>Name</span><span
                                 class="sorting-indicator"></span></th>
-                    <th scope="col" id="description" class="manage-column column-description sortable desc"><span>Descripción</span><span
+                    <th scope="col" id="description" class="manage-column column-description sortable desc"><span>Description</span><span
                                 class="sorting-indicator"></span></th>
                     <th scope="col" id="slug" class="manage-column column-slug sortable desc"><span>Slug</span><span
                                 class="sorting-indicator"></span></th>
-                    <th scope="col" id="posts" class="manage-column column-posts num sortable desc"><span>Cantidad</span><span
+                    <th scope="col" id="posts" class="manage-column column-posts num sortable desc"><span>Count</span><span
                                 class="sorting-indicator"></span></th>
                     <td class="column-handle" style="display: table-cell;"></td>
                 </tr>
@@ -89,10 +89,10 @@ function vittfiles_attributes_config_sub_page(){
                                 <div class="parent">'.$term->parent.'</div>
                             </div>
                         </td>
-                        <td class="description column-description" data-colname="Descripción"><span
+                        <td class="description column-description" data-colname="Description"><span
                                 aria-hidden="true">—</span><span class="screen-reader-text">'.$term->description.'</span></td>
                         <td class="slug column-slug" data-colname="Slug">'.$term->slug.'</td>
-                        <td class="posts column-posts" data-colname="Cantidad">'.$term->count.'</td>
+                        <td class="posts column-posts" data-colname="quantity">'.$term->count.'</td>
                         <td class="column-handle ui-sortable-handle" style="display: table-cell;"></td>
                     </tr>';
                 }
@@ -121,10 +121,10 @@ function vittfiles_attributes_config_sub_page(){
                                 '.$info.'
                             </div>
                         </td>
-                        <td class="description column-description" data-colname="Descripción"><span
+                        <td class="description column-description" data-colname="Description"><span
                                 aria-hidden="true">—</span><span class="screen-reader-text">'.$term->description.'</span></td>
                         <td class="slug column-slug" data-colname="Slug">'.$term->slug.'</td>
-                        <td class="posts column-posts" data-colname="Cantidad">'.$term->count.'</td>
+                        <td class="posts column-posts" data-colname="quantity">'.$term->count.'</td>
                         <td class="column-handle ui-sortable-handle" style="display: table-cell;"></td>
                     </tr>';
                 }

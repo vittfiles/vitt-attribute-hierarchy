@@ -5,7 +5,7 @@ function vittfiles_attributes_config_page(){
     $list = vittfiles_get_attribute_connection_list();
     $print_text = '
     <div class="wrap">
-		<h1>Generar conexiones entre atributos</h1>
+		<h1>Generate connections between attributes</h1>
     <div id="col-container">
     <div id="col-right">
         <div class="col-wrap">
@@ -14,7 +14,7 @@ function vittfiles_attributes_config_page(){
                     <tr>
                         <th scope="col">Attribute</th>
                         <th scope="col">Sub-attribute</th>
-                        <th scope="col">Acción</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,8 +40,7 @@ function vittfiles_attributes_config_page(){
                             </td>
                             <td>'.$info[1].'</td>
                             <td class="attribute-terms">
-                                <a href="'.$href.'" class="configure-terms">Configurar
-                                términos</a>
+                                <a href="'.$href.'" class="configure-terms">Configure terms</a>
                             </td>
                         </tr>';
                         $dark = !$dark;
@@ -68,9 +67,9 @@ function vittfiles_attributes_config_page(){
     <div id="col-left">
         <div class="col-wrap">
             <div class="form-wrap">
-                <h2>Agregar nueva jerarquia</h2>
-                <p>Las jerarquias de atributos funcionana simulando un comportamiento como  
-                    el de las categorias y sus sub-categorias.</p>
+                <h2>Add new hierarchy</h2>
+                <p>Attribute hierarchies work by simulating behavior like categories and their sub-categories.
+                </p>
                 <form method="post" action="'.admin_url( 'admin-post.php' ).'" >
 	                ';
                 print($print_text);
@@ -79,20 +78,20 @@ function vittfiles_attributes_config_page(){
                 $print_text = '
 
                     <div class="form-field">
-                        <label for="attribute_name">Slug del atributo</label>
+                        <label for="attribute_name">Attribute slug</label>
                         <input name="attribute_name" id="attribute_name" type="text" value="">
-                        <p class="description">Slug del atributo "padre".</p>
+                        <p class="description">Slug of the "father" attribute.</p>
                     </div>
 
                     <div class="form-field">
-                        <label for="sub_attribute_name">Slug del sub-atributo</label>
+                        <label for="sub_attribute_name">Sub-attribute slug</label>
                         <input name="sub_attribute_name" id="sub_attribute_name" type="text" value="" maxlength="28">
-                        <p class="description">Slug del atributo "hijo".
+                        <p class="description">Slug of the "child" attribute.
                         </p>
                     </div>
                     <input type="hidden" name="action" value="create_attribute_conection">
                     <p class="submit"><button type="submit" name="add_new_attribute" id="submit"
-                            class="button button-primary" value="Agregar atributo">Agregar atributo</button></p>
+                            class="button button-primary" value="Add connection">Add connection</button></p>
                 </form>
             </div>
         </div>
