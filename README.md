@@ -4,7 +4,7 @@
 
 <div align="center">
   <h3>
-    <a href="">
+    <a href="https://wordpress.org/plugins/vitt-attribute-hierarchy-for-woocommerce/">
       Plugin for wordpress
     </a>
   </h3>
@@ -27,6 +27,10 @@ This plugin works simulating a hierarchy for attributes and subattributes.
 
 The plugin looks up the sub-attributes in your product, then for each value it looks up its parent and adds the parent attribute and the parent value in the product.
 When using a filter with the main attribute on the store page, all the products that have that main attribute are returned, which are the same products that contain the associated sub-attributes.
+
+Important:
+You can't create multiple hierarchy levels, just one.
+Two diferent attributes cannot contain the same sub-attribute.
 
 ## how to use
 1. Create the attribute(father) and sub-attribute( child ) with the diferents values.

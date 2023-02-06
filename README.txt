@@ -15,6 +15,10 @@ This plugin works simulating a hierarchy for attributes and subattributes.
 The plugin looks up the sub-attributes in your product, then for each value it looks up its parent and adds the parent attribute and the parent value in the product.
 When using a filter with the main attribute on the store page, all the products that have that main attribute are returned, which are the same products that contain the associated sub-attributes.
 
+Important:
+You can't create multiple hierarchy levels, just one.
+Two diferent attributes cannot contain the same sub-attribute.
+
 == Installation ==
 ###Before You Start
 Here are some things to know before you begin this process.
