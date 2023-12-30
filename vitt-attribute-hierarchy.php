@@ -4,20 +4,27 @@
  * Plugin Name:       Vitt Attribute Hierarchy for WooCommerce
  * Plugin URI:        https://github.com/vittfiles
  * Description:       You can define attributes and subattributes to simulate their behavior like categories and subcategories
- * Version:           1.0.1
+ * Version:           1.0.2
  * Author:            Matias Martinez
- * Requires at least: 6.0
- * Tested up to: 6.1.1
- * WC requires at least: 5.0
- * WC tested up to: 7.3
+ * Requires at least: 6.4
+ * Tested up to: 6.4.2
+ * WC requires at least: 7.0
+ * WC tested up to: 8.4
  */
+defined('ABSPATH') or die();
 
 function activate_vittfiles_attribute_hierarchy(){
 	add_option( "attribute_connection", "");
 };
+
 register_activation_hook( __FILE__, 'activate_vittfiles_attribute_hierarchy');
 
-
+/* Declare HPOS compatibility */
+add_action( 'before_woocommerce_init', function() {
+	if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
+	\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+	}
+	} );
 
 include_once 'include/helper.php' ;
 include_once 'include/responses.php';

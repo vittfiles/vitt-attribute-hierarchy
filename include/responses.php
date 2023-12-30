@@ -1,4 +1,6 @@
 <?php
+
+defined('ABSPATH') or die();
 //response to update in vittfiles-sub-menu-attribute-config.php
 add_action( 'rest_api_init', 'vittfiles_rest_api_update_attributes' );
 function vittfiles_rest_api_update_attributes() {

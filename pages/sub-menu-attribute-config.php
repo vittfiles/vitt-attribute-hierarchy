@@ -1,5 +1,7 @@
 <?php
 
+defined('ABSPATH') or die();
+
 function vittfiles_attributes_config_sub_page(){
 	$slug = trim(sanitize_text_field($_GET['slug']));
 	$sub_slug = trim(sanitize_text_field($_GET['sub-slug']));
@@ -51,7 +53,7 @@ function vittfiles_attributes_config_sub_page(){
             <br class="clear">
         </div>
         <h2 class="screen-reader-text">Lista de etiquetas</h2>
-        <table class="wp-list-table widefat fixed striped table-view-list tags ui-sortable">
+        <table class="wp-list-table widefat fixed striped table-view-list tags ui-sortable sortable-list">
             <thead>
                 <tr>
                     <th scope="col" id="posts" class="manage-column column-posts num sortable desc"><span>Hierarchy</span><span
@@ -74,13 +76,17 @@ function vittfiles_attributes_config_sub_page(){
             <tbody id="the-list" class="ui-sortable" data-wp-lists="list:tag">
             ';
             print($print_text);
+                $sub_colors_result = "";
+                if(isset($sub_colors[$term->name])){
+                    $sub_colors_result = $sub_colors[$term->name];
+                }
                 $text = '';
                 //add without parent
                 foreach ( $alone_terms as $term ) {
-                    $text .= '<tr  class="ui-sortable-handle child-attr" data-index="'.$term->term_id.'" data-parent="'.$term->parent.'">
+                    $text .= '<tr draggable="true"  class=" ui-sortable-handle child-attr" data-index="'.$term->term_id.'" data-parent="'.$term->parent.'">
                         <td class="slug column-slug">&nbsp;&nbsp;&nbsp;&nbsp; &#8627;</td>
                         <td class="wvs-meta-preview column-wvs-meta-preview" data-colname="">
-                            <div class="wvs-preview wvs-color-preview" style="background-color:'.$sub_colors[$term->name].';"></div>
+                            <div class="wvs-preview wvs-color-preview" style="background-color:'.$sub_colors_result.';"></div>
                         </td>
                         <td class="name column-name has-row-actions column-primary" data-colname="Nombre"><strong>'.$term->name.'</strong><br>
                             <div class="hidden" id="inline_24">
@@ -97,16 +103,25 @@ function vittfiles_attributes_config_sub_page(){
                     </tr>';
                 }
                 foreach ( $res_terms as $term ) {
+                    $sub_colors_result = "";
+                    if(isset($sub_colors[$term->name])){
+                        $sub_colors_result = $sub_colors[$term->name];
+                    }
+                    $colors_result = "";
+                    if(isset($sub_colors[$term->name])){
+                        $colors_result = $colors[$term->name];
+                    }
+
                     $info = '<div class="parent">'.$term->parent.'</div>';
                     $type = "&nbsp;&nbsp;&nbsp;&nbsp; &#8627;";
-                    $color = $sub_colors[$term->name];
+                    $color = $sub_colors_result;
                     if($term->taxonomy == "pa_".$slug){
                         $type = "&nbsp;&nbsp; Base";
-                        $text .= '<tr  class="ui-sortable-handle base" data-index="'.$term->term_id.'">';
+                        $text .= '<tr draggable="true"  class="ui-sortable-handle base" data-index="'.$term->term_id.'">';
                         $info = '<div class="id">'.$term->term_id.'</div>';
-                        $color = $colors[$term->name];
+                        $color = $colors_result;
                     }else{
-                        $text .= '<tr  class="ui-sortable-handle child-attr" data-index="'.$term->term_id.'" data-parent="'.$term->parent.'">';
+                        $text .= '<tr draggable="true" class="ui-sortable-handle child-attr" data-index="'.$term->term_id.'" data-parent="'.$term->parent.'">';
                     }
 
                     $text .= '
@@ -160,88 +175,175 @@ function vittfiles_attributes_config_sub_page(){
             display:none;
         }
     </style>
-    <script language="JavaScript" type="text/javascript">
-            function orderUsers() 
-            {
-                var newOrder = jQuery(".ui-sortable").sortable("toArray");
-                console.log( newOrder );
-            }
-            function myuserorderaddloadevent()
-            {
-                jQuery(".ui-sortable").sortable({ 
-                    placeholder: "sortable-placeholder", 
-                    revert: false,
-                    tolerance: "pointer" 
-                });
-            };
-            addLoadEvent( myuserorderaddloadevent );
-
-            const dir = "'.rest_url( '/accion/update-attributes' ).'";
-            const nonce = "'.wp_create_nonce( 'wp_rest' ).'";
-            let bot = document.getElementById("update");
-            bot.addEventListener("click",e => {
-                e.preventDefault();
-                let theList = document.querySelectorAll("#the-list .child-attr")
-                if(theList){
-                    let result = [];
-                    theList.forEach(li => {
-                        let base = prev(li);
-                        if(base){
-                            result.push([li.getAttribute("data-index"),base.getAttribute("data-index")]);
-                        }else{
-                            result.push([li.getAttribute("data-index"),"0"]);
-                        }
-                    });
-                    let res = JSON.stringify({result: result, slug: "'.$slug.'", sub_slug: "'.$sub_slug.'"});
-                    var formData = new FormData();
-                    formData.append( "json", res );
-                    console.log(res);
-                    
-                    document.getElementById("loader").classList.remove("none");
-                    fetch(dir,{
-                        method: "POST",
-                        headers: {
-                            "X-WP-Nonce": nonce,
-                            "Content-Type": "application/json"
-                        },
-                        body: res
-                    })
-                    .then(res=>{return res.ok? res.json(): Promise.reject(res)})
-                    .then(res=>{
-                        console.log(res);
-                        alert(res.message);
-                        document.getElementById("loader").classList.add("none");
-                        let baseList = document.querySelectorAll("#the-list .base");
-                        if(baseList){
-                            baseList.forEach(li => {
-                                res.data.forEach(dat => {
-                                    if(dat.term_id === parseInt(li.getAttribute("data-index"))){
-                                    base = li.querySelector(".posts");
-                                    base.innerHTML = dat.count;
-                                    }
-                                });
-                            });
-                        }
-                    })
-                    .catch(err=>{
-                        console.log(err);
-                        alert("Error");
-                        document.getElementById("loader").classList.add("none");
-                    });
-                }
-                console.log("    -----   ----- ---- ");
-            });
-            function prev(element){
-                let previous = element.previousElementSibling;
-                while (previous) {
-                if (previous.classList.contains("base")) {
-                    return previous;
-                }
-                previous = previous.previousElementSibling;
-                }
-                return null;
-            }
-
-        </script>';
+        ';
         print($print_text);
+        $old_script = '
+        <script language="JavaScript" type="text/javascript">
+                /* function orderUsers() 
+                {
+                    var newOrder = jQuery(".ui-sortable").sortable("toArray");
+                    console.log( newOrder );
+                }
+                function myuserorderaddloadevent()
+                {
+                    jQuery(".ui-sortable").sortable({ 
+                        placeholder: "sortable-placeholder", 
+                        revert: false,
+                        tolerance: "pointer" 
+                    });
+                };
+                addLoadEvent( myuserorderaddloadevent ); */
+    
+                const dir = "'.rest_url( '/accion/update-attributes' ).'";
+                const nonce = "'.wp_create_nonce( 'wp_rest' ).'";
+                let bot = document.getElementById("update");
+                bot.addEventListener("click",e => {
+                    e.preventDefault();
+                    let theList = document.querySelectorAll("#the-list .child-attr")
+                    if(theList){
+                        let result = [];
+                        theList.forEach(li => {
+                            let base = prev(li);
+                            if(base){
+                                result.push([li.getAttribute("data-index"),base.getAttribute("data-index")]);
+                            }else{
+                                result.push([li.getAttribute("data-index"),"0"]);
+                            }
+                        });
+                        let res = JSON.stringify({result: result, slug: "'.$slug.'", sub_slug: "'.$sub_slug.'"});
+                        var formData = new FormData();
+                        formData.append( "json", res );
+                        console.log(res);
+                        
+                        document.getElementById("loader").classList.remove("none");
+                        fetch(dir,{
+                            method: "POST",
+                            headers: {
+                                "X-WP-Nonce": nonce,
+                                "Content-Type": "application/json"
+                            },
+                            body: res
+                        })
+                        .then(res=>{return res.ok? res.json(): Promise.reject(res)})
+                        .then(res=>{
+                            console.log(res);
+                            alert(res.message);
+                            document.getElementById("loader").classList.add("none");
+                            let baseList = document.querySelectorAll("#the-list .base");
+                            if(baseList){
+                                baseList.forEach(li => {
+                                    res.data.forEach(dat => {
+                                        if(dat.term_id === parseInt(li.getAttribute("data-index"))){
+                                        base = li.querySelector(".posts");
+                                        base.innerHTML = dat.count;
+                                        }
+                                    });
+                                });
+                            }
+                        })
+                        .catch(err=>{
+                            console.log(err);
+                            alert("Error");
+                            document.getElementById("loader").classList.add("none");
+                        });
+                    }
+                    console.log("    -----   ----- ---- ");
+                });
+                function prev(element){
+                    let previous = element.previousElementSibling;
+                    while (previous) {
+                    if (previous.classList.contains("base")) {
+                        return previous;
+                    }
+                    previous = previous.previousElementSibling;
+                    }
+                    return null;
+                }
+    
+            </script>';
+            ?>
+            <script>
+                // Script.js
+const sortableList = document.getElementById("the-list");
+let draggedItem = null;
+
+sortableList.addEventListener(
+	"dragstart",
+	(e) => {
+		draggedItem = e.target;
+		setTimeout(() => {
+			e.target.style.display =
+				"none";
+		}, 0);
+});
+
+sortableList.addEventListener(
+	"dragend",
+	(e) => {
+        console.log("dragend  "+ e.clientY);
+		setTimeout(() => {
+			e.target.style.display = "";
+			draggedItem = null;
+		}, 0);
+});
+
+sortableList.addEventListener(
+	"dragover",
+	(e) => {
+		e.preventDefault();
+        console.log("over  "+ e.clientY);
+		const afterElement =
+			getDragAfterElement(
+				sortableList,
+				e.clientY);
+		const currentElement =
+			document.querySelector(
+				".dragging");
+		if (afterElement == null) {
+			sortableList.appendChild(
+				draggedItem
+			);} 
+		else {
+			sortableList.insertBefore(
+				draggedItem,
+				afterElement
+			);}
+	});
+
+const getDragAfterElement = (
+	container, y
+) => {
+	const draggableElements = [
+		...container.querySelectorAll(
+			"tr:not(.dragging)"
+		),];
+
+        console.log(draggableElements)
+	return draggableElements.reduce(
+		(closest, child) => {
+			const box =
+				child.getBoundingClientRect();
+			const offset =
+				y - box.top - box.height / 2;
+			if (
+				offset < 0 &&
+				offset > closest.offset) {
+				return {
+					offset: offset,
+					element: child,
+				};} 
+			else {
+				return closest;
+			}},
+		{
+			offset: Number.NEGATIVE_INFINITY,
+		}
+	).element;
+};
+
+                </script>
+            <?php
+
+            
+print($old_script);
 }

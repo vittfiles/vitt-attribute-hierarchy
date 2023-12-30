@@ -1,5 +1,7 @@
 <?php
 
+defined('ABSPATH') or die();
+
 function vittfiles_attributes_config_page(){
     /* update_option( "attribute_connection", ""); */
     $list = vittfiles_get_attribute_connection_list();

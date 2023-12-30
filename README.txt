@@ -2,7 +2,7 @@
 Contributors: Matias Marinez
 Tags: woocommerce,attribute,hierarchy
 Requires at least: 6.0
-Tested up to: 6.1.1
+Tested up to: 6.4
 Stable tag: 1.0.1
 Requires PHP: 7.4
 License: GPLv2 or later
@@ -37,3 +37,6 @@ Here are some things to know before you begin this process.
 
 = 1.0.1 =
 * First version
+= 1.0.2 =
+* Added compatibility for WooCommerce 8.4.
+* Fixed drag-and-drop issue.

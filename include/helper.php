@@ -1,4 +1,6 @@
 <?php
+
+defined('ABSPATH') or die();
 //filtering elements with a valid color value
 function vittfiles_filter_colors($var){
     if($var->meta_value != "0" && mb_substr($var->meta_value, 0, 1) == "#" )
