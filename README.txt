@@ -40,3 +40,6 @@ Here are some things to know before you begin this process.
 = 1.0.2 =
 * Added compatibility for WooCommerce 8.4.
 * Fixed drag-and-drop issue.
+= 1.2.0 =
+* change code to work with OOP.
+* Fixed connection creation issue.
