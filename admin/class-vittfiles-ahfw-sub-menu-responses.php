@@ -28,7 +28,7 @@ class Vittfiles_Ahfw_Sub_Menu_Responses{
             'methods'  => 'POST',
             'callback' => array($this,'update_attributes'),
             'permission_callback' => function ( WP_REST_Request $request ) {
-                return current_user_can( 'manage_options' );
+                return current_user_can( 'manage_categories' );
             },
         ) );
     }
@@ -98,10 +98,10 @@ class Vittfiles_Ahfw_Sub_Menu_Responses{
         ) );
         
         if($params){
-            return array('message' => "actualizado ".implode(",", $sub_terms_chanched)." en ".$productos_total." productos",
+            return array('message' => "Updated ".implode(",", $sub_terms_chanched)." in ".$productos_total." products",
                 "data" => $base_terms);
         }else{
-            return array('message' => "El mensaje no se pudo enviar");
+            return array('message' => "The message could not be sent");
         }
     }
     

@@ -43,3 +43,5 @@ Here are some things to know before you begin this process.
 = 1.2.0 =
 * change code to work with OOP.
 * Fixed connection creation issue.
+= 1.2.1 =
+* Fixed Shop Manage issue.

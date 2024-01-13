@@ -23,7 +23,7 @@ class Vittfiles_Ahfw_Delete_Connection_Page {
         $this->parent_slug = null;
         $this->page_title = 'Delete connection';
         $this->menu_title = 'Del attr conn';
-        $this->capability = 'manage_options';
+        $this->capability = 'manage_categories';
         $this->menu_slug = 'vittfiles-delete-attribute-connection-page.php';
     }
 

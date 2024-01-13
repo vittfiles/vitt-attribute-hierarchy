@@ -34,7 +34,7 @@ class Vitt_Attribute_Hierarchy_Sub_Menu{
         $this->parent_slug = null;
         $this->page_title = 'Attribute conn';
         $this->menu_title = 'Del attr conn';
-        $this->capability = 'manage_options';
+        $this->capability = 'manage_categories';
         $this->menu_slug = 'vittfiles-sub-menu-attribute-config.php';
     }
 
