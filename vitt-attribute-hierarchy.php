@@ -16,7 +16,7 @@
  * Plugin Name:       Vitt Attribute Hierarchy for WooCommerce
  * Plugin URI:        https://wordpress.org/plugins/vitt-attribute-hierarchy-for-woocommerce
  * Description:       You can define attributes and subattributes to simulate their behavior like categories and subcategories
- * Version:           1.2.0
+ * Version:           1.2.1
  * Author:            Vittfiles
  * Author URI:        https://github.com/vittfiles/
  * License:           GPL-2.0+
